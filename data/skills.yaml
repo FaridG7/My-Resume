@@ -1,0 +1,4 @@
+- category: Programming Languages
+  items: [Go, Python, JavaScript, Rust]
+- category: Tools
+  items: [Git, Docker, Terraform, CI/CD]

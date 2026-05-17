@@ -1,0 +1,12 @@
+- id: exp-1
+  company: Tech Corp
+  role: Senior Developer
+  period: "2020 - Present"
+  location: Remote
+  summary: Led development of microservices...
+  tags: [Go, Kubernetes, AWS]
+- id: exp-2
+  company: Startup Ltd
+  role: Full-Stack Developer
+  period: "2017 - 2020"
+  summary: Built customer-facing platform...

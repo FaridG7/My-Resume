@@ -1,0 +1,12 @@
+name: John Doe
+title: Software Engineer
+about: >
+  Passionate full-stack developer with 10 years of experience...
+contact:
+  email: john@example.com
+  phone: "+1 555-1234"
+  linkedin: https://linkedin.com/in/johndoe
+languages:
+  - English (Native)
+  - French (B2)
+  - Spanish (A1)
