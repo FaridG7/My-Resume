@@ -1,0 +1,12 @@
+stages:
+  - build
+
+build-job:
+  stage: build
+  image: hugomods/hugo:exts-0.154.5
+  script:
+    - hugo --minify
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
