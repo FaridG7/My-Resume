@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 build-job:
   stage: build
@@ -10,3 +11,10 @@ build-job:
     paths:
       - public/
     expire_in: 1 hour
+
+deploy-job:
+  stage: deploy
+  only:
+    - main
+  script:
+    - whoami
