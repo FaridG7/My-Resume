@@ -25,17 +25,10 @@ deploy-job:
     - ALPINE_VERSION=$(cat /etc/alpine-release | cut -d'.' -f1-2) && echo "https://linux-mirror.liara.ir/repository/alpine/v${ALPINE_VERSION}/main" > /etc/apk/repositories && echo "https://linux-mirror.liara.ir/repository/alpine/v${ALPINE_VERSION}/community" >> /etc/apk/repositories
     - apk add --no-cache rsync openssh-client
     - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+    - cp "$SSH_PRIVATE_KEY_FILE" ~/.ssh/id_ed25519
     - chmod 600 ~/.ssh/id_ed25519
-    - echo "First line of key:"
-    - head -1 ~/.ssh/id_ed25519
-    - echo "Last line of key:"
-    - tail -1 ~/.ssh/id_ed25519
-    - echo "Key line count:"
-    - wc -l ~/.ssh/id_ed25519
-    - ssh-keygen -l -f ~/.ssh/id_ed25519 2>&1 || echo "Key is invalid"
     - ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
-    #- ssh -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" 'echo SSH connection OK'
+    - ssh -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" 'echo SSH connection OK'
   script:
     - rsync -avz --delete public/ "${DEPLOY_USER}@${DEPLOY_HOST}:~/www/"
 
