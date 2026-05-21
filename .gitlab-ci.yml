@@ -18,10 +18,12 @@ build-job:
 
 deploy-job:
   stage: deploy
-  image: rsync:latest
+  image: alpine:latest
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
   before_script:
+    - ALPINE_VERSION=$(cat /etc/alpine-release | cut -d'.' -f1-2) && echo "https://linux-mirror.liara.ir/repository/alpine/v${ALPINE_VERSION}/main" > /etc/apk/repositories && echo "https://linux-mirror.liara.ir/repository/alpine/v${ALPINE_VERSION}/community" >> /etc/apk/repositories
+    - apk add --no-cache rsync openssh-client
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
     - chmod 600 ~/.ssh/id_ed25519
