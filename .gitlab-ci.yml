@@ -29,6 +29,7 @@ deploy-job:
     - chmod 600 ~/.ssh/id_ed25519
     - ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
     - ssh -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" 'echo SSH connection OK'
+    - which rsync || echo "rsync not found"
   script:
     - rsync -avz --delete public/ "${DEPLOY_USER}@${DEPLOY_HOST}:~/www/"
 
