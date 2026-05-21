@@ -9,6 +9,8 @@ variables:
 build-job:
   stage: build
   image: hugomods/hugo:exts-0.154.5
+  before_script:
+    - git submodule update --init --recursive
   script:
     - hugo --minify
   artifacts:
