@@ -2,6 +2,10 @@ stages:
   - build
   - deploy
 
+variables:
+  DEPLOY_USER: gitlab-runner
+  DEPLOY_HOST: deployer.local
+
 build-job:
   stage: build
   image: hugomods/hugo:exts-0.154.5
@@ -14,7 +18,8 @@ build-job:
 
 deploy-job:
   stage: deploy
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
   script:
-    - whoami
+    - rsync -avz --delete public/ "${DEPLOY_USER}@${DEPLOY_HOST}:~/www/"
+
