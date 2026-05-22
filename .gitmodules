@@ -1,3 +1,6 @@
 [submodule "themes/hyde"]
 	path = themes/hyde
 	url = https://github.com/spf13/hyde.git
+[submodule "infrastructure"]
+	path = infrastructure
+	url = https://github.com/FaridG7/DevOps-Lab-1-Infrastructure.git
